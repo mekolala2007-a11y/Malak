@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Deutsch Mit Mir | مدرّسة الألماني</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="shell">
+  <header><div class="logo">DE</div><div><h1>Deutsch Mit Mir</h1><p>مدرّستك الألماني من منهجك</p></div></header>
+  <main>
+    <aside class="panel settings">
+      <h2>إعدادات المذاكرة</h2>
+      <label>المستوى</label>
+      <select id="level">{% for level in levels %}<option>{{level}}</option>{% endfor %}</select>
+      <label>لغة الشرح</label>
+      <select id="helpLanguage">
+        <option value="ar">العربية</option><option value="en">English</option><option value="de">Deutsch</option>
+      </select>
+      <label>نوع التدريب</label>
+      <select id="mode">
+        <option value="conversation">محادثة يومية</option>
+        <option value="grammar">قواعد Grammatik</option>
+        <option value="vocabulary">مفردات Wortschatz</option>
+        <option value="exam">أسئلة امتحان</option>
+      </select>
+      <div class="upload">
+        <h3>📚 ارفعي ملف المنهج PDF</h3>
+        <input id="pdfFile" type="file" accept="application/pdf">
+        <button id="uploadBtn" class="secondary">رفع الملف</button>
+        <p id="uploadStatus" class="hint">البرنامج هيستخدم محتوى الملف في التدريب.</p>
+      </div>
+      <div class="dictionary">
+        <h3>📖 القاموس الذكي</h3>
+        <input id="word" placeholder="اكتبي كلمة ألماني">
+        <select id="dictTarget">
+          <option value="ar">المعنى بالعربي</option><option value="en">Meaning in English</option><option value="de">Deutsch–Deutsch</option>
+        </select>
+        <button id="dictBtn" class="secondary">اشرح الكلمة</button>
+        <div id="dictResult" class="dict-result"></div>
+      </div>
+      <button id="clearBtn" class="clear">مسح المحادثة</button>
+    </aside>
+    <section class="panel chat-panel">
+      <div class="chat-heading"><div><h2>محادثتنا بالألماني 🇩🇪</h2><p>اتكلمي براحتك، والغلط جزء من التعلّم.</p></div><span class="online">● جاهزة</span></div>
+      <div id="messages" class="messages">
+        <div class="bubble bot">Hallo! 👋 Ich bin deine Deutschlehrerin. Lade dein PDF hoch und wir lernen zusammen. Wie geht es dir heute?</div>
+      </div>
+      <div class="quick">
+        <button data-msg="Bitte erkläre mir das einfacher." >اشرح أبسط</button>
+        <button data-msg="Stell mir eine Frage aus meinem PDF." >اسألني من الـPDF</button>
+        <button data-msg="Korrigiere bitte meine Fehler." >صحح أخطائي</button>
+      </div>
+      <form id="chatForm"><textarea id="message" rows="2" placeholder="Schreib hier auf Deutsch..."></textarea><button id="sendBtn">إرسال ↑</button></form>
+      <p class="hint">تقدري تكتبي بالألماني أو تطلبي شرح بالعربي أو الإنجليزي.</p>
+    </section>
+  </main>
+  <footer>نسخة تجريبية شخصية • ارفعي ملفاتك وابدئي التدريب</footer>
+</div>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body></html>
